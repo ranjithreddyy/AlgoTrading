@@ -11,12 +11,30 @@ Algorithmic trading application using Zerodha Kite Connect API.
 
 ## Setup
 
-1. Create a Kite Connect app at https://developers.kite.trade/apps
-2. Update `src/config.py` with your API key and secret
-3. Install dependencies:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ranjithreddyy/AlgoTrading.git
+   cd AlgoTrading
+   ```
+
+2. Create a Kite Connect app at https://developers.kite.trade/apps
+
+3. Copy the config template and add your credentials:
+   ```bash
+   cp src/config_template.py src/config.py
+   ```
+   Edit `src/config.py` with your actual API key and secret from the Kite Connect app.
+
+4. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
+
+5. Test the connection:
+   ```bash
+   python test_connection.py
+   ```
+   Follow the login URL to authorize the app.
 
 ## Usage
 
