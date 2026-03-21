@@ -39,19 +39,23 @@ Algorithmic trading application using Zerodha Kite Connect API.
    ```
    The `src/config.py` will automatically read from environment variables.
 
-5. Install dependencies:
+3. Run the environment setup script:
+   ```bash
+   chmod +x setup_env.sh
+   ./setup_env.sh
+   ```
+   This will create a `.env` file from the template and guide you through setting up your credentials.
+
+4. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-6. Test the connection:
+5. Test the connection:
    ```bash
    python test_connection.py
    ```
-   Follow the login URL to authorize the app. After successful login, set the access token:
-   ```bash
-   export KITE_ACCESS_TOKEN="access_token_from_login"
-   ```
+   Follow the login URL to authorize the app. After successful login, the script will show you the access token to add to your `.env` file.
 
 ## Usage
 
