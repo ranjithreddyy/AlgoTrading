@@ -1,6 +1,7 @@
 from kiteconnect import KiteConnect, KiteTicker
 from src.config import API_KEY, API_SECRET, ACCESS_TOKEN
 import logging
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -20,13 +21,9 @@ class KiteClient:
         """Generate session and set access token"""
         data = self.kite.generate_session(request_token, api_secret=API_SECRET)
         self.kite.set_access_token(data["access_token"])
-        # Save access token to config for persistence
-        with open('src/config.py', 'r') as f:
-            content = f.read()
-        content = content.replace('ACCESS_TOKEN = None', f'ACCESS_TOKEN = "{data["access_token"]}"')
-        with open('src/config.py', 'w') as f:
-            f.write(content)
-        logger.info("Session generated and access token saved")
+        logger.info("Session generated successfully!")
+        logger.info(f"Access Token: {data['access_token']}")
+        logger.info("Set this as environment variable: export KITE_ACCESS_TOKEN='%s'" % data['access_token'])
         return data
 
     def get_profile(self):

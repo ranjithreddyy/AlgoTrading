@@ -19,22 +19,39 @@ Algorithmic trading application using Zerodha Kite Connect API.
 
 2. Create a Kite Connect app at https://developers.kite.trade/apps
 
-3. Copy the config template and add your credentials:
+3. Set environment variables for your API credentials:
+   ```bash
+   export KITE_API_KEY="your_api_key_from_kite_app"
+   export KITE_API_SECRET="your_api_secret_from_kite_app"
+   export KITE_USER_ID="your_zerodha_user_id"  # Optional
+   ```
+
+   For persistent environment variables, add them to your `~/.bashrc` or `~/.zshrc`:
+   ```bash
+   echo 'export KITE_API_KEY="your_api_key"' >> ~/.bashrc
+   echo 'export KITE_API_SECRET="your_api_secret"' >> ~/.bashrc
+   source ~/.bashrc
+   ```
+
+4. Copy the config template and ensure it uses environment variables:
    ```bash
    cp src/config_template.py src/config.py
    ```
-   Edit `src/config.py` with your actual API key and secret from the Kite Connect app.
+   The `src/config.py` will automatically read from environment variables.
 
-4. Install dependencies:
+5. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-5. Test the connection:
+6. Test the connection:
    ```bash
    python test_connection.py
    ```
-   Follow the login URL to authorize the app.
+   Follow the login URL to authorize the app. After successful login, set the access token:
+   ```bash
+   export KITE_ACCESS_TOKEN="access_token_from_login"
+   ```
 
 ## Usage
 

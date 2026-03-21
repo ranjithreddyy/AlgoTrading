@@ -6,11 +6,20 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import urllib.parse
 import threading
 import time
+import os
 
-# Your API credentials
-API_KEY = "wafpg35djbz3xwdp"
-API_SECRET = "2x419i41aicq16vsxp8nqgsrkkienx4c"  # Replace with your actual API secret
+# Your API credentials from environment variables
+API_KEY = os.getenv('KITE_API_KEY')
+API_SECRET = os.getenv('KITE_API_SECRET')
 REDIRECT_URI = "http://localhost:8000"
+
+# Validate that environment variables are set
+if not API_KEY or not API_SECRET:
+    print("Error: Please set KITE_API_KEY and KITE_API_SECRET environment variables")
+    print("Example:")
+    print("export KITE_API_KEY='your_api_key'")
+    print("export KITE_API_SECRET='your_api_secret'")
+    exit(1)
 
 # Global variable to store request token
 request_token = None
