@@ -57,6 +57,26 @@ Algorithmic trading application using Zerodha Kite Connect API.
    ```
    Follow the login URL to authorize the app. After successful login, the script will show you the access token to add to your `.env` file.
 
+## Quick Start
+
+For a quick setup in new terminal sessions:
+```bash
+cd /path/to/AlgoTrading
+source .venv/bin/activate
+source setup_env.sh
+python main.py test
+python main.py backtest
+```
+
+## Environment Variables
+
+The application uses the following environment variables (stored in `.env`):
+
+- `KITE_API_KEY`: Your Kite Connect API key
+- `KITE_API_SECRET`: Your Kite Connect API secret
+- `KITE_ACCESS_TOKEN`: Access token obtained after login
+- `KITE_USER_ID`: Your Zerodha user ID (optional)
+
 ## Usage
 
 ### Test Connection
