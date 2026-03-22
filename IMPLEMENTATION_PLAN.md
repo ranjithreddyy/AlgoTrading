@@ -19,6 +19,7 @@ The plan explicitly does **not** optimize for a fixed rupee profit target per da
 - Stable performance across regimes
 - Slippage-aware execution
 - Safe autonomous operation
+- Graceful degradation under failure conditions
 
 Research capital assumptions for paper/backtest:
 
@@ -58,7 +59,42 @@ Current repository gaps that must be fixed before strategy work:
 - No futures in `v1`
 - No overnight positions
 - No option selling in `v1`
+- Kite API rate limits apply: `3 req/sec` for historical data, `10 orders/sec` for order placement
+- Kite access tokens expire daily; token refresh must happen before market open
 - No more than one live strategy family should be promoted at a time during initial rollout
+
+## Trading Calendar and Market Sessions
+
+The system must be calendar-aware:
+
+- Maintain an NSE holiday calendar, refreshed annually
+- Do not run strategies or place orders on exchange holidays
+- Recognize special sessions: `Muhurat Trading`, early close days
+- Handle monthly `F&O expiry Thursdays` as distinct regime (higher volatility, gamma risk)
+- Handle weekly `NIFTY option expiry` days with special risk rules (rapid theta decay, wider spreads)
+- Track `RBI policy days`, `Union Budget day`, and `quarterly earnings` dates as high-impact event days
+- Pre-market session (`09:00-09:08`) data should be captured for opening price discovery signals
+- Regular market: `09:15-15:30`, closing session: `15:30-15:40`
+
+## Corporate Actions and Data Adjustments
+
+Historical data must account for corporate actions to avoid phantom signals:
+
+- Adjust for stock splits and bonuses in historical candle data
+- Adjust for ex-dividend dates when computing returns
+- Flag symbols undergoing corporate action and exclude them from universe on adjustment dates
+- Kite historical API returns unadjusted data; the ingestion layer must apply adjustments before storage
+- Maintain a corporate actions log per symbol for audit
+
+## Circuit Breaker and Exchange Halt Handling
+
+Indian markets have circuit breakers that the system must handle:
+
+- Stock-level upper/lower circuit limits: exclude circuit-hit stocks from signal generation
+- Index-level market-wide circuit breakers (`10%`, `15%`, `20%`): halt all strategy activity
+- Detect circuit conditions via price hitting limit + zero bid/ask depth
+- Never place orders on circuit-locked stocks
+- If a held position's stock hits a circuit, mark it for manual review instead of automated exit
 
 ## Target Architecture
 
@@ -71,9 +107,11 @@ src/
     trading_config.py
   core/
     clock.py
+    calendar.py
     enums.py
     types.py
     utils.py
+    logger.py
   broker/
     kite_client.py
     paper_broker.py
@@ -83,11 +121,14 @@ src/
     instrument_master.py
     option_chain.py
     symbol_resolver.py
+    corporate_actions.py
+    greeks.py
   data/
     ingestion.py
     historical_loader.py
     websocket_feed.py
     storage.py
+    quality.py
   features/
     base.py
     price_features.py
@@ -96,6 +137,8 @@ src/
     microstructure_features.py
     options_features.py
     regime_features.py
+    cross_asset_features.py
+    feature_registry.py
   labels/
     triple_barrier.py
     horizon_returns.py
@@ -129,6 +172,7 @@ src/
     trade_loop.py
     session_manager.py
     monitoring.py
+    crash_recovery.py
 scripts/
   sync_instruments.py
   ingest_history.py
@@ -138,6 +182,22 @@ scripts/
   run_live_trading.py
 tests/
 ```
+
+### Concurrency Model
+
+- Use `asyncio` as the primary concurrency model for the live trading loop
+- WebSocket feed, signal generation, and order management run as async tasks
+- CPU-bound work (feature computation, model inference) runs in a `ProcessPoolExecutor`
+- Each strategy family runs as an independent async task with its own state
+- Use `asyncio.Queue` for communication between feed, signal, and execution layers
+
+### Component Wiring
+
+- Use constructor-based dependency injection across all modules
+- Core interfaces (`Broker`, `DataFeed`, `RiskEngine`) are abstract base classes
+- `PaperBroker` and `KiteBroker` implement the same `Broker` interface
+- A `SessionFactory` wires all components together at startup based on config
+- This enables unit testing with mocked dependencies
 
 ## Storage Design
 
@@ -162,9 +222,26 @@ Use local-first storage with partitioned `Parquet` and `DuckDB`.
 - Live trading logs:
   - `artifacts/live/<date>/`
 
-Non-negotiable rule:
+Non-negotiable rules:
 
 - Archive the daily instrument master. Expired option tokens are not recoverable later unless they are cached when live.
+- Use Snappy or Zstandard compression for Parquet files to manage storage growth.
+
+### Data Retention Policy
+
+- Raw instrument masters: retain indefinitely (small files, critical for survivorship bias)
+- Minute-bar candles: retain indefinitely (core research asset)
+- Feature files: retain last `6 months`; regenerate from raw data if older features are needed
+- Backtest artifacts: retain last `20` runs per strategy; archive older runs to cold storage
+- Paper/live trade logs: retain indefinitely (audit requirement)
+- Model artifacts: retain all promoted versions; prune non-promoted versions older than `3 months`
+
+### Trade and Order Log Storage
+
+- Use SQLite (not Parquet) for trade logs, order logs, and signal logs
+- Relational queries on trade logs (filter by strategy, date range, outcome) are common and SQLite handles them better than Parquet scans
+- Keep one SQLite database per month to avoid unbounded file growth
+- Schema must include: `trade_id`, `strategy_id`, `model_version`, `signal_time`, `entry_time`, `exit_time`, `entry_price`, `exit_price`, `quantity`, `side`, `pnl`, `slippage`, `reason`
 
 ## Data Ingestion Plan
 
@@ -192,6 +269,13 @@ Non-negotiable rule:
    - `day`
 4. For F&O historical calls, request `oi=1` where available.
 5. Add ingestion commands that backfill by date range and avoid duplicate writes.
+6. Add data quality validation on every ingestion batch:
+   - reject bars where `high < low` or `close` outside `[low, high]`
+   - detect and flag gaps in minute-bar sequences (missing bars)
+   - detect volume anomalies (zero volume during market hours)
+   - apply corporate action adjustments before writing to storage
+   - log quality metrics per ingestion run
+7. Respect Kite API rate limits (`3 req/sec` for historical data) with adaptive throttling and backoff.
 
 ### Phase 2: Live Market Data
 
@@ -203,6 +287,11 @@ Non-negotiable rule:
    - reconnect count
    - time since last tick
    - symbol subscription mismatches
+4. Implement network resilience:
+   - exponential backoff on WebSocket reconnect (max `30s`)
+   - fall back to REST polling if WebSocket is down for more than `2 minutes`
+   - alert if data staleness exceeds `60 seconds` during market hours
+   - detect and handle Kite API maintenance windows gracefully
 
 ## Tradable Universe Rules
 
@@ -295,6 +384,22 @@ Build one shared feature library first. Do not hardcode indicators inside strate
 - opening gap classification
 - time-of-day bucket
 
+### Cross-Asset and Correlation Features
+
+- rolling correlation of stock vs NIFTY
+- sector co-movement score
+- beta to NIFTY
+- dispersion score (how far individual stocks move vs the index)
+- cross-sectional rank of returns, volume, and volatility
+
+### Regime Detection Features
+
+- Hidden Markov Model regime state (trend, range, volatile)
+- rolling Hurst exponent
+- volatility regime percentile (low/normal/high/extreme)
+- trend strength persistence score
+- mean-reversion half-life estimate
+
 ### Options Features
 
 - moneyness
@@ -305,6 +410,14 @@ Build one shared feature library first. Do not hardcode indicators inside strate
 - volume/OI ratio
 - ATM straddle move
 - call-put relative strength
+
+### Options Greeks (Calculated)
+
+- delta (Black-Scholes or binomial)
+- gamma
+- theta
+- vega
+- implied volatility (via Newton-Raphson or bisection on BS model)
 
 ## Strategy Families
 
@@ -385,6 +498,22 @@ Exit conditions:
 - tighter stop
 - shorter holding window
 - end-of-day forced exit
+
+### Strategy Correlation and Diversification
+
+- Measure rolling correlation of daily PnL across strategy families
+- Do not deploy two highly correlated strategies simultaneously; they compound drawdown risk
+- Use a portfolio-level Sharpe ratio, not individual strategy Sharpes, for capital allocation
+- Track marginal contribution to risk for each active strategy
+
+### Expiry Day Special Handling for Options
+
+- On NIFTY weekly expiry days:
+  - tighten stop losses by `50%`
+  - reduce max position size for options by `50%`
+  - no new option entries in last `60 minutes` before expiry
+  - force-exit all option positions at least `15 minutes` before close
+  - flag gamma risk when delta moves faster than expected
 
 ## Labeling and Prediction Targets
 
@@ -468,6 +597,21 @@ Do not average every model blindly. Promote only the models that improve out-of-
    - cost assumptions
 7. Register every successful model version.
 
+### Walk-Forward Retraining Schedule
+
+- Retrain baseline models every `5 trading days` using expanding or rolling windows
+- Retrain deep models every `20 trading days` (higher computational cost)
+- Evaluate model staleness: if live prediction accuracy drops below `OOS baseline - 2 sigma`, trigger early retrain
+- Track feature importance drift across retraining windows
+- Alert if top-10 feature ranking changes significantly between consecutive retrains
+
+### Feature Importance and Decay Tracking
+
+- Log SHAP values or permutation importance at every training run
+- Track which features contribute most to prediction vs which are noise
+- Auto-flag features whose importance drops below a configurable threshold for `3` consecutive windows
+- Remove or replace decayed features in subsequent training runs
+
 Minimum model metadata:
 
 - model name
@@ -496,6 +640,13 @@ The backtest engine must support:
 - stop and target handling
 - intraday position limits
 - end-of-day flattening
+
+Survivorship bias controls:
+
+- Use point-in-time universe snapshots from archived instrument masters
+- Do not backtest with today's NIFTY 50 constituents on 2-year-old data
+- Reconstruct daily universe using the instrument master from that date
+- Symbols that were delisted, suspended, or moved out of the index must appear in historical backtests
 
 Backtest fill logic:
 
@@ -545,6 +696,20 @@ Risk controls must exist before any live deployment.
 - no trading in first few minutes after open unless strategy explicitly allows it
 - no new positions near market close
 - forced intraday exit before close
+
+### Crash Recovery and State Persistence
+
+- Persist all open positions and pending orders to a local state file (JSON or SQLite) on every state change
+- On startup during market hours, reconcile local state against broker positions via `kite.positions()`
+- If positions exist on broker but not in local state, flag for manual review; do not auto-trade against unknown positions
+- If the system was down and missed exit signals, attempt graceful exit on reconnection (within risk limits)
+- Log every crash/restart event with timestamp and recovery actions taken
+
+### Token and Authentication Resilience
+
+- Refresh Kite access token automatically before market open each day
+- If token expires mid-session (should not happen with daily tokens, but as a safety net): pause all new order activity, alert immediately, attempt re-authentication
+- Never cache tokens beyond their expiry window
 
 ## Paper Trading Plan
 
@@ -609,6 +774,22 @@ Create daily and intraday reports for:
 - paper vs backtest drift
 - live vs paper drift
 
+### Execution Quality Analytics
+
+- compare fill price vs VWAP over holding period (implementation shortfall)
+- compare fill price vs mid-price at signal time
+- track order-to-fill latency
+- measure realized spread cost vs assumed spread cost
+- flag trades where realized slippage exceeds `2x` the modeled slippage
+
+### Logging Framework
+
+- Use Python `logging` with `structlog` for structured JSON log output
+- Log levels: `DEBUG` for tick-level data, `INFO` for trade events, `WARNING` for risk threshold approaches, `ERROR` for failures, `CRITICAL` for kill-switch triggers
+- Every log entry must include: `timestamp`, `session_date`, `component`, `strategy_id` (if applicable)
+- Rotate log files daily; retain for `90 days`
+- In live mode, stream `WARNING+` logs to a monitoring channel (Telegram bot or similar)
+
 Add alerts for:
 
 - token/auth failure
@@ -636,9 +817,13 @@ Live rollout should assume current `SEBI` retail algo requirements apply during 
 ### Milestone 1: Foundation
 
 - stabilize repo entrypoints and config
+- set up structured logging framework
+- add NSE trading calendar and holiday awareness
 - add instrument master archive
-- add historical ingestion
-- add parquet and duckdb storage
+- add corporate actions tracking and price adjustment
+- add historical ingestion with data quality validation
+- add parquet and duckdb storage with compression
+- add SQLite trade log schema
 - add tests for symbol resolution and ingestion
 
 ### Milestone 2: Research Pipeline
@@ -652,22 +837,28 @@ Live rollout should assume current `SEBI` retail algo requirements apply during 
 ### Milestone 3: Option Research
 
 - add option-chain resolver
+- add options Greeks calculation (delta, gamma, theta, vega, IV)
 - add option features and labels
-- add option-aware backtests
+- add expiry-day special risk rules
+- add option-aware backtests with survivorship-bias-free universe
 - evaluate NIFTY option momentum and fade families
+- measure strategy correlation across families
 
 ### Milestone 4: Paper Trading
 
-- add websocket feed
+- add websocket feed with network resilience
 - add paper broker
-- add risk engine
-- add real-time reporting
+- add risk engine with circuit breaker detection
+- add crash recovery and state persistence
+- add real-time reporting with execution quality analytics
 - run paper trading for required sessions
 
 ### Milestone 5: Live Readiness
 
 - add execution router and reconciler
 - add kill switch and monitoring
+- add token refresh automation
+- add Telegram/webhook alert integration
 - enable shadow mode
 - enable micro-live only after paper criteria are met
 
@@ -713,6 +904,16 @@ Add integration tests for:
 - end-to-end paper-trading session replay
 - live signal loop with mocked broker responses
 
+Add stress/edge-case tests for:
+
+- circuit breaker detection and halt behavior
+- crash recovery and state reconciliation
+- token expiry mid-session handling
+- WebSocket disconnect and reconnect behavior
+- expiry-day risk rule enforcement
+- corporate action adjustment correctness
+- concurrent strategy execution under load
+
 ## Suggested Dependency Additions
 
 Likely additions to `requirements.txt`:
@@ -730,7 +931,14 @@ Likely additions to `requirements.txt`:
 - `sqlalchemy`
 - `tenacity`
 - `pytest`
+- `pytest-asyncio`
 - `torch`
+- `structlog`
+- `shap`
+- `scipy`
+- `hmmlearn`
+- `py-vollib` (for options Greeks and implied volatility)
+- `exchange-calendars` or `trading-calendars` (for NSE holiday awareness)
 
 Deep and foundation-model dependencies should be added only when their evaluation phase begins.
 
