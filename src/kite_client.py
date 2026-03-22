@@ -38,7 +38,7 @@ class KiteClient:
         """Get historical data"""
         return self.kite.historical_data(instrument_token, from_date, to_date, interval)
 
-    def place_order(self, variety, exchange, tradingsymbol, transaction_type, order_type, quantity, price=None, trigger_price=None):
+    def place_order(self, variety, exchange, tradingsymbol, transaction_type, order_type, quantity, product, price=None, trigger_price=None):
         """Place an order"""
         order_params = {
             "variety": variety,
@@ -47,6 +47,7 @@ class KiteClient:
             "transaction_type": transaction_type,
             "order_type": order_type,
             "quantity": quantity,
+            "product": product,
         }
         if price:
             order_params["price"] = price
