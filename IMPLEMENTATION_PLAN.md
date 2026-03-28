@@ -251,7 +251,41 @@ Non-negotiable rules:
 2. Convert current `src/kite_client.py` into a broker client layer with retries, timeout handling, and logging.
 3. Add environment loading via `.env`.
 4. Normalize command entrypoints in `main.py` or move to `scripts/`.
-5. Preserve the existing code as a temporary compatibility layer only until the new modules exist.
+5. Make config validation happen at runtime, not import time, so local CLI help and smoke commands do not crash before auth is needed.
+6. Fix backtest import/package wiring so the repo can be executed from the checked-out workspace.
+7. Separate manual broker smoke scripts from automated test discovery.
+8. Preserve the existing code as a temporary compatibility layer only until the new modules exist.
+
+### Phase 0.5: Historical Data Capability Probe
+
+Before bulk ingestion, add a read-only probe script to measure what the current Kite subscription can actually access.
+
+The probe must test:
+
+1. instrument dump access and token resolution
+2. supported historical intervals for:
+   - `minute`
+   - `3minute`
+   - `5minute`
+   - `15minute`
+   - `day`
+3. earliest reachable historical date per instrument and interval
+4. `oi=1` support for derivative instruments
+5. expired futures/options behavior when instrument tokens were not archived
+
+Initial probe universe:
+
+- `NIFTY`
+- `2-5` liquid NSE cash stocks
+- one live NIFTY future
+- optionally one live NIFTY option contract
+
+Probe outputs:
+
+- human-readable summary in stdout
+- optional CSV or JSON report for planning ingestion scope
+
+The probe must respect Kite rate limits and remain read-only.
 
 ### Phase 1: Instrument and History Pipeline
 
@@ -540,15 +574,35 @@ Secondary targets:
 
 ## Model Plan
 
+Do **not** optimize plain classification accuracy as the primary objective. For trading, plain accuracy is often misleading because class imbalance, costs, and slippage can make an "accurate" model economically useless.
+
 ### Production Baselines
 
 These should be built first and treated as likely `v1` winners:
 
 - logistic regression
-- random forest
+- `CatBoost`
 - `LightGBM`
 - `XGBoost`
-- `CatBoost`
+- random forest
+
+### Recommended `v1` Priority Order
+
+Prioritize the first wave of experiments in this order:
+
+1. `CatBoost` for mixed tabular features, strong defaults, and robust classification/regression baselines
+2. `LightGBM` for fast walk-forward iteration across many symbols and windows
+3. `XGBoost` as a strong alternative tree booster for comparison
+4. logistic regression for interpretable calibration baseline
+5. random forest only as a sanity-check baseline, not as the main production candidate
+
+### Supporting Research Libraries
+
+These are not all production models, but they are useful for the research pipeline:
+
+- `MLForecast` for feature engineering, cross-validation, and direct forecasting targets such as next-bar return, realized volatility, or volume
+- `FinMLKit` for bars, labels, and microstructure-style feature preparation if raw trade or tick data is available later
+- `Qlib` as a research-platform reference for end-to-end ML pipeline ideas, not as an immediate dependency for this repo
 
 ### Deep Learning Challengers
 
@@ -570,6 +624,13 @@ Evaluate only after the classical baselines are stable:
 - `MOMENT`
 - `Time-MoE`
 - `TimeFound`
+
+### Research Automation (Optional)
+
+- `karpathy/autoresearch` may be useful later for automating small-scale local experiment loops and iterative model ideas
+- it is **not** a backtesting engine, model registry, or finance-specific research framework
+- do not make it part of the core `v1` research path
+- only evaluate it after the data pipeline, walk-forward evaluation, and baseline models are already stable
 
 ### Ensemble Policy
 
@@ -596,6 +657,45 @@ Do not average every model blindly. Promote only the models that improve out-of-
    - validation metrics
    - cost assumptions
 7. Register every successful model version.
+
+### Model Measurement Plan
+
+Primary promotion metrics must be trading-aware:
+
+- out-of-sample post-cost net PnL
+- expectancy per trade
+- profit factor
+- Sharpe or Sortino ratio
+- max drawdown
+- drawdown duration
+- turnover and slippage sensitivity
+
+Secondary ML metrics should explain *why* a model is good or bad:
+
+- precision and recall for `trade` vs `no_trade`
+- precision at top-`k` confidence bucket
+- PR-AUC for imbalanced classification
+- Brier score and calibration curve quality
+- confusion matrix by regime
+- rank correlation / information coefficient if using continuous scores
+
+Evaluation rules:
+
+- every model must beat a simple rules-only or non-ML baseline after costs
+- every model must be evaluated with purged walk-forward validation
+- every model must be ranked on out-of-sample trading metrics first and ML metrics second
+- no model is promoted on backtest accuracy alone
+- the current champion model remains deployed until a challenger wins on net out-of-sample performance and stability
+
+### Forecasting vs Classification Usage
+
+- use classification and meta-labeling as the default path for entry filtering and execution gating
+- use forecasting models only where they clearly improve a downstream decision, such as:
+  - next-bar return bucket
+  - realized volatility forecast
+  - slippage forecast
+  - holding-time estimate
+- direct forecasting models should be compared against classification-based decision policies rather than assumed superior by default
 
 ### Walk-Forward Retraining Schedule
 
@@ -654,6 +754,73 @@ Backtest fill logic:
 - apply spread-based entry/exit penalty
 - use liquidity-aware slippage model
 - block fills on bars with insufficient volume
+
+## Multi-Strategy Parallel Testing
+
+The platform must support writing and evaluating multiple strategies simultaneously rather than testing one at a time.
+
+### Strategy Registry
+
+- Every strategy is a self-contained class implementing a common `Strategy` interface
+- A `StrategyRegistry` discovers and registers all available strategies
+- Each strategy declares its own parameter grid, universe filter, and regime requirements
+- Strategies are tagged by family (momentum, mean-reversion, options) and asset class (stock, option)
+
+### Parallel Backtest Runner
+
+- A `BatchRunner` accepts a list of strategy configs and runs them all against the same data window
+- Use `multiprocessing` or `concurrent.futures.ProcessPoolExecutor` to run backtests in parallel across CPU cores
+- Each strategy run is isolated: no shared mutable state between parallel runs
+- Results are collected into a unified comparison report
+
+### Parameter Sweep and Grid Search
+
+- Each strategy can define a parameter grid (e.g., lookback periods, thresholds, stop widths)
+- The batch runner can expand strategy configs into all grid combinations
+- Use `Optuna` for smarter hyperparameter search when the grid is large
+- All parameter combinations are logged with their results for reproducibility
+
+### Comparison and Ranking
+
+- After a batch run, produce a ranked leaderboard sorted by primary metrics:
+  - post-cost net PnL
+  - Sharpe ratio
+  - profit factor
+  - max drawdown
+  - number of trades
+  - win rate
+- Generate side-by-side equity curves for visual comparison
+- Generate a correlation matrix of strategy returns to identify redundancy
+- Flag strategies that are statistically indistinguishable from random (permutation test)
+
+### Multi-Strategy Report
+
+- HTML or notebook-based report with:
+  - leaderboard table
+  - equity curve overlay plot
+  - drawdown comparison
+  - monthly PnL heatmap per strategy
+  - parameter sensitivity analysis
+  - regime-conditional performance breakdown
+- Auto-generated after every batch run
+
+### Strategy Tournament Workflow
+
+The intended workflow:
+
+1. Write multiple strategy classes (each in its own file under `strategies/`)
+2. Define parameter grids per strategy
+3. Run `scripts/run_backtests.py --all` to execute all strategies in parallel
+4. Review the comparison report
+5. Shortlist top performers for walk-forward validation
+6. Promote winners to paper trading
+
+### Walk-Forward Tournament
+
+- Run walk-forward validation on all shortlisted strategies simultaneously
+- Compare out-of-sample performance across the same time windows
+- Only strategies that pass out-of-sample consistently get promoted
+- Track performance decay over successive out-of-sample windows
 
 ## Cost Model
 
@@ -814,11 +981,23 @@ Live rollout should assume current `SEBI` retail algo requirements apply during 
 
 ## Implementation Order
 
+### Stage 0: Repo Stabilization and Capability Probe
+
+- stabilize repo entrypoints and config
+- make `.env` loading automatic from repo root
+- remove machine-specific local paths
+- make config/auth checks runtime-bound instead of import-bound
+- fix backtest package/import execution from repo root
+- separate manual broker scripts from automated tests
+- run historical capability probe for NIFTY and selected NSE stocks
+- confirm actual interval reach, earliest dates, and OI support before bulk ingestion
+
 ### Milestone 1: Foundation
 
 - stabilize repo entrypoints and config
 - set up structured logging framework
 - add NSE trading calendar and holiday awareness
+- lock verified historical ingestion scope from the capability probe
 - add instrument master archive
 - add corporate actions tracking and price adjustment
 - add historical ingestion with data quality validation
@@ -864,6 +1043,15 @@ Live rollout should assume current `SEBI` retail algo requirements apply during 
 
 ## Acceptance Criteria
 
+The platform is ready for foundation work when all of the following are true:
+
+- repo CLI is runnable from the checked-out workspace
+- `main.py` command routing works for local smoke flows
+- automated test discovery does not execute interactive broker scripts
+- historical capability report exists for NIFTY and selected NSE stocks
+- instrument archival requirements are confirmed from probe results
+- ingestion scope matches verified API reach, not assumptions
+
 The platform is ready for paper trading when all of the following are true:
 
 - instrument masters are archived daily
@@ -887,6 +1075,9 @@ The platform is ready for micro-live when all of the following are true:
 
 Add automated tests for:
 
+- CLI/config bootstrap without sourced shell exports
+- `main.py` command routing for `backtest`, `oauth`, `status`, and `token`
+- repo-relative subprocess execution
 - symbol and option contract resolution
 - instrument archive loading
 - historical ingestion deduplication
@@ -903,6 +1094,8 @@ Add integration tests for:
 - end-to-end backtest run
 - end-to-end paper-trading session replay
 - live signal loop with mocked broker responses
+- historical capability probe with invalid token and missing symbol cases
+- historical capability probe reporting for supported intervals and earliest reachable dates
 
 Add stress/edge-case tests for:
 
@@ -920,10 +1113,13 @@ Likely additions to `requirements.txt`:
 
 - `python-dotenv`
 - `scikit-learn`
+- `mlforecast`
+- `neuralforecast`
 - `lightgbm`
 - `xgboost`
 - `catboost`
 - `optuna`
+- `finmlkit`
 - `duckdb`
 - `pyarrow`
 - `polars`
@@ -937,6 +1133,7 @@ Likely additions to `requirements.txt`:
 - `shap`
 - `scipy`
 - `hmmlearn`
+- `qlib` (evaluate only if we want a heavier research platform later)
 - `py-vollib` (for options Greeks and implied volatility)
 - `exchange-calendars` or `trading-calendars` (for NSE holiday awareness)
 
@@ -950,6 +1147,14 @@ Deep and foundation-model dependencies should be added only when their evaluatio
 - Zerodha postbacks: `https://kite.trade/docs/connect/v3/postbacks/`
 - SEBI retail algo circular, February 4, 2025
 - SEBI extension circular, September 30, 2025
+- `MLForecast`: `https://github.com/Nixtla/mlforecast`
+- `NeuralForecast`: `https://github.com/Nixtla/neuralforecast`
+- `CatBoost`: `https://github.com/catboost/catboost`
+- `LightGBM`: `https://github.com/lightgbm-org/LightGBM`
+- `XGBoost`: `https://github.com/dmlc/xgboost`
+- `FinMLKit`: `https://github.com/quantscious/finmlkit`
+- `Qlib`: `https://github.com/microsoft/qlib`
+- `autoresearch`: `https://github.com/karpathy/autoresearch`
 - `N-BEATS`, `PatchTST`, `TFT`, `TSMixer`, `TimeMixer`, `Chronos`, `TimesFM`, `MOMENT`, `Time-MoE`, and `TimeFound` as challenger model references
 
 ## Immediate Next Step
@@ -961,8 +1166,9 @@ Do not start by coding models first.
 The correct first sequence is:
 
 1. stabilize config and command entrypoints
-2. archive instruments
-3. ingest historical data
-4. create storage layout
-5. build symbol resolution and option-chain selection
-6. then start feature and model work
+2. run the historical capability probe
+3. archive instruments
+4. ingest historical data
+5. create storage layout
+6. build symbol resolution and option-chain selection
+7. then start feature and model work

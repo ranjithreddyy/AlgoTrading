@@ -5,12 +5,19 @@ Main entry point for the trading application
 """
 
 import argparse
-from src.kite_client import KiteClient
 import logging
+import os
 import sys
+
+from dotenv import load_dotenv
+load_dotenv()
+
+from src.kite_client import KiteClient
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def test_connection():
     """Test Kite Connect connection"""
@@ -28,24 +35,42 @@ def test_connection():
 def check_status():
     """Check live trading status"""
     import subprocess
-    import sys
     result = subprocess.run([sys.executable, 'live_trader_status.py'],
-                          cwd='/home/ranjith/TradingZeroda',
+                          cwd=BASE_DIR,
                           capture_output=True, text=True)
     print(result.stdout)
     if result.stderr:
         print(result.stderr)
 
+def start_oauth_server():
+    """Start OAuth callback server for authorization"""
+    import subprocess
+    print("Starting OAuth callback server...")
+    result = subprocess.run([sys.executable, 'oauth_callback_server.py'],
+                          cwd=BASE_DIR)
+    return result.returncode == 0
+
 def start_https_oauth_server():
     """Start HTTPS OAuth callback server for secure authorization"""
     import subprocess
-    import sys
     print("Starting SECURE HTTPS OAuth callback server...")
     print("Use https://localhost:8443 in your Kite Connect app")
-    print("⚠️  Browser will show security warning - click 'Advanced' -> 'Proceed to localhost'")
     result = subprocess.run([sys.executable, 'oauth_https_server.py'],
-                          cwd='/home/ranjith/TradingZeroda')
+                          cwd=BASE_DIR)
     return result.returncode == 0
+
+def run_backtest(strategy):
+    """Run backtest - delegates to backtests/run_backtest.py"""
+    import subprocess
+    print(f"Running backtest with strategy: {strategy}")
+    print(f"You can also run backtests directly: python {os.path.join('backtests', 'run_backtest.py')}")
+    result = subprocess.run([sys.executable, os.path.join('backtests', 'run_backtest.py'),
+                            '--strategy', strategy],
+                          cwd=BASE_DIR,
+                          capture_output=True, text=True)
+    print(result.stdout)
+    if result.stderr:
+        print(result.stderr)
 
 def main():
     parser = argparse.ArgumentParser(description='MyAlgoTrader - Algorithmic Trading App')
@@ -67,7 +92,7 @@ def main():
     elif args.command == 'token':
         import subprocess
         result = subprocess.run([sys.executable, 'token_manager.py'],
-                              cwd='/home/ranjith/TradingZeroda')
+                              cwd=BASE_DIR)
     elif args.command == 'live':
         logger.info("Live trading not implemented yet")
 

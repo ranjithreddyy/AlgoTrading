@@ -1,0 +1,163 @@
+[
+  {
+    "symbol": "NIFTY 50",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "NIFTY 50",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "NIFTY 50",
+    "interval": "5minute",
+    "from": "2025-12-12",
+    "to": "2026-03-22",
+    "records": 4950
+  },
+  {
+    "symbol": "HDFCBANK",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "HDFCBANK",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "HINDUNILVR",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "HINDUNILVR",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "INFY",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "INFY",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "KOTAKBANK",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "KOTAKBANK",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "RELIANCE",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "RELIANCE",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "SBIN",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "SBIN",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "ICICIBANK",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "ICICIBANK",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "BHARTIARTL",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "BHARTIARTL",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "LT",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "LT",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  },
+  {
+    "symbol": "TCS",
+    "interval": "day",
+    "from": "2024-03-22",
+    "to": "2026-03-22",
+    "records": 495
+  },
+  {
+    "symbol": "TCS",
+    "interval": "15minute",
+    "from": "2025-09-03",
+    "to": "2026-03-22",
+    "records": 3379
+  }
+]

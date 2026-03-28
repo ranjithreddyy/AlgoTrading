@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio Backtest Report</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 32px; background: #f8f9fa; color: #222; }
+  h1 { color: #1a237e; }
+  h2 { color: #283593; border-bottom: 2px solid #c5cae9; padding-bottom: 4px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin-bottom: 24px; background: #fff; }
+  th { background: #3f51b5; color: #fff; padding: 7px 10px; text-align: left; }
+  td { padding: 6px 10px; border: 1px solid #ddd; }
+  tr:nth-child(even) { background: #f3f3f3; }
+  .card { background: #fff; border-radius: 6px; padding: 16px 24px; margin-bottom: 28px;
+           box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .metric { display: inline-block; margin-right: 32px; }
+  .metric .val { font-size: 22px; font-weight: bold; color: #3f51b5; }
+  .metric .lbl { font-size: 12px; color: #666; }
+</style>
+</head>
+<body>
+<h1>Portfolio Backtest Report</h1>
+<p>Stocks: RELIANCE, TCS, HDFCBANK, INFY, ICICIBANK, SBIN, HINDUNILVR, BHARTIARTL, KOTAKBANK, LT</p>
+
+<div class="card">
+  <h2>Diversification Score</h2>
+  <div class="metric">
+    <div class="val">0.923</div>
+    <div class="lbl">Diversification Score (1 = perfectly diversified)</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Individual Strategy Performance (all stocks aggregated)</h2>
+  <table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Strategy</th>
+      <th>Stocks</th>
+      <th>Total Trades</th>
+      <th>Net PnL</th>
+      <th>Avg Sharpe</th>
+      <th>Avg Win Rate</th>
+      <th>Max DD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>mean_reversion</td>
+      <td>10</td>
+      <td>242</td>
+      <td>1023.09</td>
+      <td>0.1825</td>
+      <td>0.4052</td>
+      <td>425.31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>vwap_reversion</td>
+      <td>10</td>
+      <td>157</td>
+      <td>211.25</td>
+      <td>-0.0139</td>
+      <td>0.3573</td>
+      <td>342.10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>option_fade</td>
+      <td>10</td>
+      <td>215</td>
+      <td>24.03</td>
+      <td>-0.0221</td>
+      <td>0.4016</td>
+      <td>411.30</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>volume_spike</td>
+      <td>10</td>
+      <td>173</td>
+      <td>-532.88</td>
+      <td>-0.2027</td>
+      <td>0.3247</td>
+      <td>533.03</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>momentum_breakout</td>
+      <td>10</td>
+      <td>145</td>
+      <td>-481.54</td>
+      <td>-0.3730</td>
+      <td>0.2983</td>
+      <td>902.55</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>straddle_breakout</td>
+      <td>10</td>
+      <td>147</td>
+      <td>-867.33</td>
+      <td>-0.3739</td>
+      <td>0.3142</td>
+      <td>482.78</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>option_momentum</td>
+      <td>10</td>
+      <td>112</td>
+      <td>-304.52</td>
+      <td>-0.5361</td>
+      <td>0.2630</td>
+      <td>446.69</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>orb_strategy</td>
+      <td>10</td>
+      <td>700</td>
+      <td>-3742.55</td>
+      <td>-0.5585</td>
+      <td>0.3149</td>
+      <td>1822.34</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>gamma_scalp</td>
+      <td>10</td>
+      <td>548</td>
+      <td>-2169.10</td>
+      <td>-1.5176</td>
+      <td>0.2856</td>
+      <td>699.93</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card">
+  <h2>Portfolio Allocation Comparison</h2>
+  <table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Total PnL</th>
+      <th>Sharpe</th>
+      <th>Max DD</th>
+      <th>Ann. Return</th>
+      <th>Ann. Vol</th>
+      <th>Weights</th>
+    </tr>
+    <tr>
+      <th>Method</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Equal Weight</th>
+      <td>-759.96</td>
+      <td>-1.8692</td>
+      <td>753.55</td>
+      <td>-407.47</td>
+      <td>217.9900</td>
+      <td>gamma_scalp: 11.1%, mean_reversion: 11.1%, momentum_breakout: 11.1%, option_fade: 11.1%, option_momentum: 11.1%, orb_strategy: 11.1%, straddle_breakout: 11.1%, volume_spike: 11.1%, vwap_reversion: 11.1%</td>
+    </tr>
+    <tr>
+      <th>Max Sharpe</th>
+      <td>486.07</td>
+      <td>0.7221</td>
+      <td>449.24</td>
+      <td>260.62</td>
+      <td>360.8912</td>
+      <td>mean_reversion: 40.0%, vwap_reversion: 33.3%, option_fade: 26.7%, orb_strategy: 0.0%, gamma_scalp: 0.0%, momentum_breakout: 0.0%, option_momentum: 0.0%, straddle_breakout: 0.0%, volume_spike: 0.0%</td>
+    </tr>
+    <tr>
+      <th>Min Volatility</th>
+      <td>-924.85</td>
+      <td>-3.1154</td>
+      <td>921.87</td>
+      <td>-495.88</td>
+      <td>159.1681</td>
+      <td>gamma_scalp: 33.7%, vwap_reversion: 13.7%, straddle_breakout: 12.1%, option_fade: 11.8%, momentum_breakout: 7.8%, volume_spike: 7.7%, mean_reversion: 6.3%, option_momentum: 4.4%, orb_strategy: 2.5%</td>
+    </tr>
+    <tr>
+      <th>Risk Parity</th>
+      <td>-385.96</td>
+      <td>-1.0102</td>
+      <td>487.54</td>
+      <td>-206.94</td>
+      <td>204.8598</td>
+      <td>option_fade: 17.4%, straddle_breakout: 16.6%, vwap_reversion: 16.6%, volume_spike: 11.6%, momentum_breakout: 11.4%, option_momentum: 11.0%, mean_reversion: 9.3%, orb_strategy: 6.0%, gamma_scalp: 0.0%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card">
+  <h2>Strategy Correlation Matrix</h2>
+  <img src="strategy_correlation.png" alt="Correlation Heatmap" style="max-width:700px;">
+  <br>
+  <table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gamma_scalp</th>
+      <th>mean_reversion</th>
+      <th>momentum_breakout</th>
+      <th>option_fade</th>
+      <th>option_momentum</th>
+      <th>orb_strategy</th>
+      <th>straddle_breakout</th>
+      <th>volume_spike</th>
+      <th>vwap_reversion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>gamma_scalp</th>
+      <td>1.000</td>
+      <td>-0.194</td>
+      <td>-0.034</td>
+      <td>0.103</td>
+      <td>-0.008</td>
+      <td>-0.071</td>
+      <td>0.077</td>
+      <td>-0.043</td>
+      <td>-0.033</td>
+    </tr>
+    <tr>
+      <th>mean_reversion</th>
+      <td>-0.194</td>
+      <td>1.000</td>
+      <td>-0.075</td>
+      <td>-0.112</td>
+      <td>0.011</td>
+      <td>0.035</td>
+      <td>0.014</td>
+      <td>0.040</td>
+      <td>0.176</td>
+    </tr>
+    <tr>
+      <th>momentum_breakout</th>
+      <td>-0.034</td>
+      <td>-0.075</td>
+      <td>1.000</td>
+      <td>-0.043</td>
+      <td>0.548</td>
+      <td>-0.026</td>
+      <td>-0.002</td>
+      <td>0.145</td>
+      <td>-0.021</td>
+    </tr>
+    <tr>
+      <th>option_fade</th>
+      <td>0.103</td>
+      <td>-0.112</td>
+      <td>-0.043</td>
+      <td>1.000</td>
+      <td>0.026</td>
+      <td>-0.079</td>
+      <td>0.165</td>
+      <td>-0.061</td>
+      <td>-0.040</td>
+    </tr>
+    <tr>
+      <th>option_momentum</th>
+      <td>-0.008</td>
+      <td>0.011</td>
+      <td>0.548</td>
+      <td>0.026</td>
+      <td>1.000</td>
+      <td>-0.001</td>
+      <td>0.042</td>
+      <td>0.069</td>
+      <td>0.058</td>
+    </tr>
+    <tr>
+      <th>orb_strategy</th>
+      <td>-0.071</td>
+      <td>0.035</td>
+      <td>-0.026</td>
+      <td>-0.079</td>
+      <td>-0.001</td>
+      <td>1.000</td>
+      <td>0.025</td>
+      <td>0.142</td>
+      <td>-0.115</td>
+    </tr>
+    <tr>
+      <th>straddle_breakout</th>
+      <td>0.077</td>
+      <td>0.014</td>
+      <td>-0.002</td>
+      <td>0.165</td>
+      <td>0.042</td>
+      <td>0.025</td>
+      <td>1.000</td>
+      <td>-0.103</td>
+      <td>-0.028</td>
+    </tr>
+    <tr>
+      <th>volume_spike</th>
+      <td>-0.043</td>
+      <td>0.040</td>
+      <td>0.145</td>
+      <td>-0.061</td>
+      <td>0.069</td>
+      <td>0.142</td>
+      <td>-0.103</td>
+      <td>1.000</td>
+      <td>0.017</td>
+    </tr>
+    <tr>
+      <th>vwap_reversion</th>
+      <td>-0.033</td>
+      <td>0.176</td>
+      <td>-0.021</td>
+      <td>-0.040</td>
+      <td>0.058</td>
+      <td>-0.115</td>
+      <td>-0.028</td>
+      <td>0.017</td>
+      <td>1.000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card">
+  <h2>Top Uncorrelated Strategy Pairs (|corr| &le; 0.3)</h2>
+  <ul><li><b>gamma_scalp</b> vs <b>mean_reversion</b></li><li><b>gamma_scalp</b> vs <b>momentum_breakout</b></li><li><b>gamma_scalp</b> vs <b>option_fade</b></li><li><b>gamma_scalp</b> vs <b>option_momentum</b></li><li><b>gamma_scalp</b> vs <b>orb_strategy</b></li><li><b>gamma_scalp</b> vs <b>straddle_breakout</b></li><li><b>gamma_scalp</b> vs <b>volume_spike</b></li><li><b>gamma_scalp</b> vs <b>vwap_reversion</b></li><li><b>mean_reversion</b> vs <b>momentum_breakout</b></li><li><b>mean_reversion</b> vs <b>option_fade</b></li></ul>
+</div>
+
+</body>
+</html>

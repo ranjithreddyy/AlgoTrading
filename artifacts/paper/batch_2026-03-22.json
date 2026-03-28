@@ -1,0 +1,2090 @@
+{
+  "date": "2026-03-22",
+  "symbols": [
+    "RELIANCE",
+    "TCS",
+    "HDFCBANK",
+    "INFY",
+    "ICICIBANK",
+    "SBIN"
+  ],
+  "strategies": [
+    "gamma_scalp",
+    "mean_reversion",
+    "momentum_breakout",
+    "option_fade",
+    "option_momentum",
+    "orb_strategy",
+    "straddle_breakout",
+    "volume_spike",
+    "vwap_reversion"
+  ],
+  "bars": 100,
+  "interval": "day",
+  "results": [
+    {
+      "symbol": "RELIANCE",
+      "strategy": "gamma_scalp",
+      "bars": 100,
+      "trades": 9,
+      "winners": 5,
+      "losers": 4,
+      "win_pct": 55.6,
+      "total_pnl": 85.36,
+      "sharpe": 5.0906,
+      "trade_list": [
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1539.7,
+          "exit_price": 1546.3,
+          "entry_date": "2025-11-25 00:00:00+05:30",
+          "exit_date": "2025-12-02 00:00:00+05:30",
+          "gross_pnl": -6.6,
+          "cost": 0.62,
+          "net_pnl": -7.22,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1535.6,
+          "exit_price": 1545.0,
+          "entry_date": "2025-12-04 00:00:00+05:30",
+          "exit_date": "2025-12-11 00:00:00+05:30",
+          "gross_pnl": 9.4,
+          "cost": 0.62,
+          "net_pnl": 8.78,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1578.1,
+          "exit_price": 1507.6,
+          "entry_date": "2026-01-05 00:00:00+05:30",
+          "exit_date": "2026-01-06 00:00:00+05:30",
+          "gross_pnl": 70.5,
+          "cost": 0.62,
+          "net_pnl": 69.88,
+          "reason": "RSI=38 reverted to neutral - exit short"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1470.6,
+          "exit_price": 1457.9,
+          "entry_date": "2026-01-08 00:00:00+05:30",
+          "exit_date": "2026-01-16 00:00:00+05:30",
+          "gross_pnl": -12.7,
+          "cost": 0.59,
+          "net_pnl": -13.29,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1413.6,
+          "exit_price": 1380.5,
+          "entry_date": "2026-01-19 00:00:00+05:30",
+          "exit_date": "2026-01-27 00:00:00+05:30",
+          "gross_pnl": -33.1,
+          "cost": 0.56,
+          "net_pnl": -33.66,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1347.0,
+          "exit_price": 1390.4,
+          "entry_date": "2026-02-01 00:00:00+05:30",
+          "exit_date": "2026-02-02 00:00:00+05:30",
+          "gross_pnl": 43.4,
+          "cost": 0.55,
+          "net_pnl": 42.85,
+          "reason": "RSI=54 reverted to neutral - exit long"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1409.5,
+          "exit_price": 1428.8,
+          "entry_date": "2026-02-19 00:00:00+05:30",
+          "exit_date": "2026-02-24 00:00:00+05:30",
+          "gross_pnl": 19.3,
+          "cost": 0.57,
+          "net_pnl": 18.73,
+          "reason": "RSI=54 reverted to neutral - exit long"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1398.5,
+          "exit_price": 1389.4,
+          "entry_date": "2026-02-25 00:00:00+05:30",
+          "exit_date": "2026-03-05 00:00:00+05:30",
+          "gross_pnl": -9.1,
+          "cost": 0.56,
+          "net_pnl": -9.66,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1390.2,
+          "exit_price": 1380.7,
+          "entry_date": "2026-03-11 00:00:00+05:30",
+          "exit_date": "2026-03-13 00:00:00+05:30",
+          "gross_pnl": 9.5,
+          "cost": 0.55,
+          "net_pnl": 8.95,
+          "reason": "RSI=32 reverted to neutral - exit short"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "strategy": "mean_reversion",
+      "bars": 100,
+      "trades": 2,
+      "winners": 2,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 169.35,
+      "sharpe": 22.3155,
+      "trade_list": [
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1535.9,
+          "exit_price": 1390.4,
+          "entry_date": "2025-11-24 00:00:00+05:30",
+          "exit_date": "2026-02-02 00:00:00+05:30",
+          "gross_pnl": 145.5,
+          "cost": 0.59,
+          "net_pnl": 144.91,
+          "reason": "RSI crossed above oversold (31.7)"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1389.4,
+          "exit_price": 1414.4,
+          "entry_date": "2026-03-05 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 25.0,
+          "cost": 0.56,
+          "net_pnl": 24.44,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "strategy": "momentum_breakout",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 89.22,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1504.2,
+          "exit_price": 1414.4,
+          "entry_date": "2026-01-07 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 89.8,
+          "cost": 0.58,
+          "net_pnl": 89.22,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "strategy": "option_fade",
+      "bars": 100,
+      "trades": 3,
+      "winners": 2,
+      "losers": 1,
+      "win_pct": 66.7,
+      "total_pnl": 89.04,
+      "sharpe": 13.8036,
+      "trade_list": [
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1569.9,
+          "exit_price": 1529.4,
+          "entry_date": "2025-11-26 00:00:00+05:30",
+          "exit_date": "2025-12-09 00:00:00+05:30",
+          "gross_pnl": 40.5,
+          "cost": 0.62,
+          "net_pnl": 39.88,
+          "reason": "price reverted to BB mid - exit PE"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1452.8,
+          "exit_price": 1437.1,
+          "entry_date": "2026-01-13 00:00:00+05:30",
+          "exit_date": "2026-02-03 00:00:00+05:30",
+          "gross_pnl": -15.7,
+          "cost": 0.58,
+          "net_pnl": -16.28,
+          "reason": "price reverted to BB mid - exit CE"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1358.0,
+          "exit_price": 1424.0,
+          "entry_date": "2026-03-02 00:00:00+05:30",
+          "exit_date": "2026-03-09 00:00:00+05:30",
+          "gross_pnl": 66.0,
+          "cost": 0.56,
+          "net_pnl": 65.44,
+          "reason": "price reverted to BB mid - exit CE"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "strategy": "option_momentum",
+      "bars": 100,
+      "trades": 0,
+      "winners": 0,
+      "losers": 0,
+      "win_pct": 0.0,
+      "total_pnl": 0,
+      "sharpe": 0.0,
+      "trade_list": []
+    },
+    {
+      "symbol": "RELIANCE",
+      "strategy": "orb_strategy",
+      "bars": 100,
+      "trades": 3,
+      "winners": 1,
+      "losers": 2,
+      "win_pct": 33.3,
+      "total_pnl": -19.58,
+      "sharpe": -2.1916,
+      "trade_list": [
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1473.1,
+          "exit_price": 1511.5,
+          "entry_date": "2025-11-04 00:00:00+05:30",
+          "exit_date": "2025-11-12 00:00:00+05:30",
+          "gross_pnl": -38.4,
+          "cost": 0.6,
+          "net_pnl": -39.0,
+          "reason": "ORB breakout above 1508.30"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1510.9,
+          "exit_price": 1470.6,
+          "entry_date": "2025-11-13 00:00:00+05:30",
+          "exit_date": "2026-01-08 00:00:00+05:30",
+          "gross_pnl": -40.3,
+          "cost": 0.6,
+          "net_pnl": -40.9,
+          "reason": "ORB breakdown below 1477.60"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1475.3,
+          "exit_price": 1414.4,
+          "entry_date": "2026-01-09 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 60.9,
+          "cost": 0.58,
+          "net_pnl": 60.32,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "strategy": "straddle_breakout",
+      "bars": 100,
+      "trades": 0,
+      "winners": 0,
+      "losers": 0,
+      "win_pct": 0.0,
+      "total_pnl": 0,
+      "sharpe": 0.0,
+      "trade_list": []
+    },
+    {
+      "symbol": "RELIANCE",
+      "strategy": "volume_spike",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 117.62,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1507.6,
+          "exit_price": 1389.4,
+          "entry_date": "2026-01-06 00:00:00+05:30",
+          "exit_date": "2026-03-05 00:00:00+05:30",
+          "gross_pnl": 118.2,
+          "cost": 0.58,
+          "net_pnl": 117.62,
+          "reason": "Volume spike (2.2x) + bullish bar"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "strategy": "vwap_reversion",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": 18.82,
+      "sharpe": 2.3235,
+      "trade_list": [
+        {
+          "symbol": "RELIANCE",
+          "side": "short",
+          "entry_price": 1535.9,
+          "exit_price": 1461.6,
+          "entry_date": "2025-11-24 00:00:00+05:30",
+          "exit_date": "2026-02-09 00:00:00+05:30",
+          "gross_pnl": 74.3,
+          "cost": 0.6,
+          "net_pnl": 73.7,
+          "reason": "VWAP reversion from below (dev: -0.0196)"
+        },
+        {
+          "symbol": "RELIANCE",
+          "side": "long",
+          "entry_price": 1468.7,
+          "exit_price": 1414.4,
+          "entry_date": "2026-02-11 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -54.3,
+          "cost": 0.58,
+          "net_pnl": -54.88,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "gamma_scalp",
+      "bars": 100,
+      "trades": 6,
+      "winners": 2,
+      "losers": 4,
+      "win_pct": 33.3,
+      "total_pnl": -78.12,
+      "sharpe": -3.4792,
+      "trade_list": [
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3131.8,
+          "exit_price": 3147.7,
+          "entry_date": "2025-11-12 00:00:00+05:30",
+          "exit_date": "2025-11-19 00:00:00+05:30",
+          "gross_pnl": -15.9,
+          "cost": 1.26,
+          "net_pnl": -17.16,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3280.8,
+          "exit_price": 3280.0,
+          "entry_date": "2025-12-18 00:00:00+05:30",
+          "exit_date": "2025-12-26 00:00:00+05:30",
+          "gross_pnl": 0.8,
+          "cost": 1.31,
+          "net_pnl": -0.51,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3295.6,
+          "exit_price": 3203.9,
+          "entry_date": "2026-01-07 00:00:00+05:30",
+          "exit_date": "2026-01-08 00:00:00+05:30",
+          "gross_pnl": 91.7,
+          "cost": 1.3,
+          "net_pnl": 90.4,
+          "reason": "RSI=45 reverted to neutral - exit short"
+        },
+        {
+          "symbol": "TCS",
+          "side": "long",
+          "entry_price": 3192.5,
+          "exit_price": 3206.7,
+          "entry_date": "2026-01-14 00:00:00+05:30",
+          "exit_date": "2026-01-16 00:00:00+05:30",
+          "gross_pnl": 14.2,
+          "cost": 1.28,
+          "net_pnl": 12.92,
+          "reason": "RSI=51 reverted to neutral - exit long"
+        },
+        {
+          "symbol": "TCS",
+          "side": "long",
+          "entry_price": 2999.1,
+          "exit_price": 2909.8,
+          "entry_date": "2026-02-04 00:00:00+05:30",
+          "exit_date": "2026-02-11 00:00:00+05:30",
+          "gross_pnl": -89.3,
+          "cost": 1.18,
+          "net_pnl": -90.48,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "TCS",
+          "side": "long",
+          "entry_price": 2750.1,
+          "exit_price": 2677.9,
+          "entry_date": "2026-02-12 00:00:00+05:30",
+          "exit_date": "2026-02-19 00:00:00+05:30",
+          "gross_pnl": -72.2,
+          "cost": 1.09,
+          "net_pnl": -73.29,
+          "reason": "gamma scalp max hold exit"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "mean_reversion",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 578.76,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3137.5,
+          "exit_price": 2557.6,
+          "entry_date": "2025-11-28 00:00:00+05:30",
+          "exit_date": "2026-03-06 00:00:00+05:30",
+          "gross_pnl": 579.9,
+          "cost": 1.14,
+          "net_pnl": 578.76,
+          "reason": "RSI crossed above oversold (30.7)"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "momentum_breakout",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 814.98,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3206.7,
+          "exit_price": 2390.6,
+          "entry_date": "2026-01-16 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 816.1,
+          "cost": 1.12,
+          "net_pnl": 814.98,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "option_fade",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": -338.82,
+      "sharpe": -14.0713,
+      "trade_list": [
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3229.2,
+          "exit_price": 3206.2,
+          "entry_date": "2025-12-04 00:00:00+05:30",
+          "exit_date": "2025-12-31 00:00:00+05:30",
+          "gross_pnl": 23.0,
+          "cost": 1.29,
+          "net_pnl": 21.71,
+          "reason": "price reverted to BB mid - exit PE"
+        },
+        {
+          "symbol": "TCS",
+          "side": "long",
+          "entry_price": 2750.1,
+          "exit_price": 2390.6,
+          "entry_date": "2026-02-12 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -359.5,
+          "cost": 1.03,
+          "net_pnl": -360.53,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "option_momentum",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 513.32,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3206.7,
+          "exit_price": 2692.2,
+          "entry_date": "2026-01-16 00:00:00+05:30",
+          "exit_date": "2026-02-13 00:00:00+05:30",
+          "gross_pnl": 514.5,
+          "cost": 1.18,
+          "net_pnl": 513.32,
+          "reason": "max holding bars reached (short)"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "orb_strategy",
+      "bars": 100,
+      "trades": 3,
+      "winners": 1,
+      "losers": 2,
+      "win_pct": 33.3,
+      "total_pnl": 375.77,
+      "sharpe": 5.9251,
+      "trade_list": [
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3016.8,
+          "exit_price": 3131.8,
+          "entry_date": "2025-11-03 00:00:00+05:30",
+          "exit_date": "2025-11-12 00:00:00+05:30",
+          "gross_pnl": -115.0,
+          "cost": 1.23,
+          "net_pnl": -116.23,
+          "reason": "ORB breakout above 3090.20"
+        },
+        {
+          "symbol": "TCS",
+          "side": "long",
+          "entry_price": 3105.7,
+          "exit_price": 2999.1,
+          "entry_date": "2025-11-13 00:00:00+05:30",
+          "exit_date": "2026-02-04 00:00:00+05:30",
+          "gross_pnl": -106.6,
+          "cost": 1.22,
+          "net_pnl": -107.82,
+          "reason": "ORB breakdown below 3032.80"
+        },
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 2991.5,
+          "exit_price": 2390.6,
+          "entry_date": "2026-02-05 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 600.9,
+          "cost": 1.08,
+          "net_pnl": 599.82,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "straddle_breakout",
+      "bars": 100,
+      "trades": 0,
+      "winners": 0,
+      "losers": 0,
+      "win_pct": 0.0,
+      "total_pnl": 0,
+      "sharpe": 0.0,
+      "trade_list": []
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "volume_spike",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": 542.03,
+      "sharpe": 12.7888,
+      "trade_list": [
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3203.9,
+          "exit_price": 3268.0,
+          "entry_date": "2026-01-08 00:00:00+05:30",
+          "exit_date": "2026-01-13 00:00:00+05:30",
+          "gross_pnl": -64.1,
+          "cost": 1.29,
+          "net_pnl": -65.39,
+          "reason": "Volume spike (2.5x) + bullish bar"
+        },
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 2999.1,
+          "exit_price": 2390.6,
+          "entry_date": "2026-02-04 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 608.5,
+          "cost": 1.08,
+          "net_pnl": 607.42,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "strategy": "vwap_reversion",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -18.15,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "TCS",
+          "side": "short",
+          "entry_price": 3105.7,
+          "exit_price": 3122.6,
+          "entry_date": "2025-11-13 00:00:00+05:30",
+          "exit_date": "2026-01-21 00:00:00+05:30",
+          "gross_pnl": -16.9,
+          "cost": 1.25,
+          "net_pnl": -18.15,
+          "reason": "VWAP reversion from below (dev: -0.0151)"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "gamma_scalp",
+      "bars": 100,
+      "trades": 6,
+      "winners": 2,
+      "losers": 4,
+      "win_pct": 33.3,
+      "total_pnl": -77.65,
+      "sharpe": -9.895,
+      "trade_list": [
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 977.5,
+          "exit_price": 936.95,
+          "entry_date": "2026-01-05 00:00:00+05:30",
+          "exit_date": "2026-01-12 00:00:00+05:30",
+          "gross_pnl": -40.55,
+          "cost": 0.38,
+          "net_pnl": -40.93,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 925.45,
+          "exit_price": 918.7,
+          "entry_date": "2026-01-14 00:00:00+05:30",
+          "exit_date": "2026-01-22 00:00:00+05:30",
+          "gross_pnl": -6.75,
+          "cost": 0.37,
+          "net_pnl": -7.12,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "HDFCBANK",
+          "side": "short",
+          "entry_price": 948.7,
+          "exit_price": 932.4,
+          "entry_date": "2026-02-03 00:00:00+05:30",
+          "exit_date": "2026-02-10 00:00:00+05:30",
+          "gross_pnl": 16.3,
+          "cost": 0.38,
+          "net_pnl": 15.92,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 903.9,
+          "exit_price": 911.85,
+          "entry_date": "2026-02-13 00:00:00+05:30",
+          "exit_date": "2026-02-20 00:00:00+05:30",
+          "gross_pnl": 7.95,
+          "cost": 0.36,
+          "net_pnl": 7.59,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 868.65,
+          "exit_price": 833.95,
+          "entry_date": "2026-03-04 00:00:00+05:30",
+          "exit_date": "2026-03-11 00:00:00+05:30",
+          "gross_pnl": -34.7,
+          "cost": 0.34,
+          "net_pnl": -35.04,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 798.2,
+          "exit_price": 780.45,
+          "entry_date": "2026-03-19 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -17.75,
+          "cost": 0.32,
+          "net_pnl": -18.07,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "mean_reversion",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -152.59,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 932.7,
+          "exit_price": 780.45,
+          "entry_date": "2026-01-28 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -152.25,
+          "cost": 0.34,
+          "net_pnl": -152.59,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "momentum_breakout",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 209.0,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "HDFCBANK",
+          "side": "short",
+          "entry_price": 989.8,
+          "exit_price": 780.45,
+          "entry_date": "2025-12-10 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 209.35,
+          "cost": 0.35,
+          "net_pnl": 209.0,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "option_fade",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": -98.31,
+      "sharpe": -13.3444,
+      "trade_list": [
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 939.0,
+          "exit_price": 948.7,
+          "entry_date": "2026-01-09 00:00:00+05:30",
+          "exit_date": "2026-02-03 00:00:00+05:30",
+          "gross_pnl": 9.7,
+          "cost": 0.38,
+          "net_pnl": 9.32,
+          "reason": "price reverted to BB mid - exit CE"
+        },
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 887.75,
+          "exit_price": 780.45,
+          "entry_date": "2026-02-27 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -107.3,
+          "cost": 0.33,
+          "net_pnl": -107.63,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "option_momentum",
+      "bars": 100,
+      "trades": 0,
+      "winners": 0,
+      "losers": 0,
+      "win_pct": 0.0,
+      "total_pnl": 0,
+      "sharpe": 0.0,
+      "trade_list": []
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "orb_strategy",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 206.5,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "HDFCBANK",
+          "side": "short",
+          "entry_price": 987.3,
+          "exit_price": 780.45,
+          "entry_date": "2025-10-31 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 206.85,
+          "cost": 0.35,
+          "net_pnl": 206.5,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "straddle_breakout",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -210.8,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 990.9,
+          "exit_price": 780.45,
+          "entry_date": "2025-12-30 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -210.45,
+          "cost": 0.35,
+          "net_pnl": -210.8,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "volume_spike",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 181.4,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "HDFCBANK",
+          "side": "short",
+          "entry_price": 962.2,
+          "exit_price": 780.45,
+          "entry_date": "2026-01-06 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 181.75,
+          "cost": 0.35,
+          "net_pnl": 181.4,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "strategy": "vwap_reversion",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -168.6,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "HDFCBANK",
+          "side": "long",
+          "entry_price": 948.7,
+          "exit_price": 780.45,
+          "entry_date": "2026-02-03 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -168.25,
+          "cost": 0.35,
+          "net_pnl": -168.6,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "gamma_scalp",
+      "bars": 100,
+      "trades": 6,
+      "winners": 3,
+      "losers": 3,
+      "win_pct": 50.0,
+      "total_pnl": -11.18,
+      "sharpe": -0.8454,
+      "trade_list": [
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1476.8,
+          "exit_price": 1513.5,
+          "entry_date": "2025-11-07 00:00:00+05:30",
+          "exit_date": "2025-11-10 00:00:00+05:30",
+          "gross_pnl": 36.7,
+          "cost": 0.6,
+          "net_pnl": 36.1,
+          "reason": "RSI=73 reverted to neutral - exit long"
+        },
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1548.0,
+          "exit_price": 1564.0,
+          "entry_date": "2025-11-24 00:00:00+05:30",
+          "exit_date": "2025-12-01 00:00:00+05:30",
+          "gross_pnl": -16.0,
+          "cost": 0.62,
+          "net_pnl": -16.62,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1606.4,
+          "exit_price": 1639.0,
+          "entry_date": "2026-01-05 00:00:00+05:30",
+          "exit_date": "2026-01-07 00:00:00+05:30",
+          "gross_pnl": 32.6,
+          "cost": 0.65,
+          "net_pnl": 31.95,
+          "reason": "RSI=63 reverted to neutral - exit long"
+        },
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1689.8,
+          "exit_price": 1670.8,
+          "entry_date": "2026-01-16 00:00:00+05:30",
+          "exit_date": "2026-01-23 00:00:00+05:30",
+          "gross_pnl": 19.0,
+          "cost": 0.67,
+          "net_pnl": 18.33,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1535.8,
+          "exit_price": 1471.9,
+          "entry_date": "2026-02-04 00:00:00+05:30",
+          "exit_date": "2026-02-11 00:00:00+05:30",
+          "gross_pnl": -63.9,
+          "cost": 0.6,
+          "net_pnl": -64.5,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1369.1,
+          "exit_price": 1353.2,
+          "entry_date": "2026-02-13 00:00:00+05:30",
+          "exit_date": "2026-02-20 00:00:00+05:30",
+          "gross_pnl": -15.9,
+          "cost": 0.54,
+          "net_pnl": -16.44,
+          "reason": "gamma scalp max hold exit"
+        }
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "mean_reversion",
+      "bars": 100,
+      "trades": 2,
+      "winners": 0,
+      "losers": 2,
+      "win_pct": 0.0,
+      "total_pnl": -51.05,
+      "sharpe": -16.2828,
+      "trade_list": [
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1599.0,
+          "exit_price": 1599.0,
+          "entry_date": "2025-12-09 00:00:00+05:30",
+          "exit_date": "2026-01-13 00:00:00+05:30",
+          "gross_pnl": 0.0,
+          "cost": 0.64,
+          "net_pnl": -0.64,
+          "reason": "RSI crossed above oversold (32.0)"
+        },
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1305.8,
+          "exit_price": 1255.9,
+          "entry_date": "2026-03-05 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -49.9,
+          "cost": 0.51,
+          "net_pnl": -50.41,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "momentum_breakout",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": 187.88,
+      "sharpe": 8.0434,
+      "trade_list": [
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1599.0,
+          "exit_price": 1689.8,
+          "entry_date": "2026-01-13 00:00:00+05:30",
+          "exit_date": "2026-01-16 00:00:00+05:30",
+          "gross_pnl": -90.8,
+          "cost": 0.66,
+          "net_pnl": -91.46,
+          "reason": "EMA bullish crossover + volume"
+        },
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1535.8,
+          "exit_price": 1255.9,
+          "entry_date": "2026-02-04 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 279.9,
+          "cost": 0.56,
+          "net_pnl": 279.34,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "option_fade",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": -264.71,
+      "sharpe": -15.8565,
+      "trade_list": [
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1616.2,
+          "exit_price": 1615.4,
+          "entry_date": "2025-12-05 00:00:00+05:30",
+          "exit_date": "2025-12-31 00:00:00+05:30",
+          "gross_pnl": 0.8,
+          "cost": 0.65,
+          "net_pnl": 0.15,
+          "reason": "price reverted to BB mid - exit PE"
+        },
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1520.2,
+          "exit_price": 1255.9,
+          "entry_date": "2026-02-05 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -264.3,
+          "cost": 0.56,
+          "net_pnl": -264.86,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "option_momentum",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -154.65,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1689.8,
+          "exit_price": 1535.8,
+          "entry_date": "2026-01-16 00:00:00+05:30",
+          "exit_date": "2026-02-04 00:00:00+05:30",
+          "gross_pnl": -154.0,
+          "cost": 0.65,
+          "net_pnl": -154.65,
+          "reason": "EMA bearish crossover - exit CE"
+        }
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "orb_strategy",
+      "bars": 100,
+      "trades": 4,
+      "winners": 1,
+      "losers": 3,
+      "win_pct": 25.0,
+      "total_pnl": -54.74,
+      "sharpe": -2.6145,
+      "trade_list": [
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1482.3,
+          "exit_price": 1530.3,
+          "entry_date": "2025-10-31 00:00:00+05:30",
+          "exit_date": "2025-11-11 00:00:00+05:30",
+          "gross_pnl": -48.0,
+          "cost": 0.6,
+          "net_pnl": -48.6,
+          "reason": "ORB breakout above 1520.20"
+        },
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1551.7,
+          "exit_price": 1486.4,
+          "entry_date": "2025-11-12 00:00:00+05:30",
+          "exit_date": "2025-11-18 00:00:00+05:30",
+          "gross_pnl": -65.3,
+          "cost": 0.61,
+          "net_pnl": -65.91,
+          "reason": "ORB breakdown below 1489.10"
+        },
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1541.1,
+          "exit_price": 1471.9,
+          "entry_date": "2025-11-19 00:00:00+05:30",
+          "exit_date": "2026-02-11 00:00:00+05:30",
+          "gross_pnl": -69.2,
+          "cost": 0.6,
+          "net_pnl": -69.8,
+          "reason": "ORB breakdown below 1489.10"
+        },
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1386.0,
+          "exit_price": 1255.9,
+          "entry_date": "2026-02-12 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 130.1,
+          "cost": 0.53,
+          "net_pnl": 129.57,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "straddle_breakout",
+      "bars": 100,
+      "trades": 0,
+      "winners": 0,
+      "losers": 0,
+      "win_pct": 0.0,
+      "total_pnl": 0,
+      "sharpe": 0.0,
+      "trade_list": []
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "volume_spike",
+      "bars": 100,
+      "trades": 3,
+      "winners": 0,
+      "losers": 3,
+      "win_pct": 0.0,
+      "total_pnl": -160.71,
+      "sharpe": -11.9161,
+      "trade_list": [
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1689.6,
+          "exit_price": 1535.8,
+          "entry_date": "2025-12-22 00:00:00+05:30",
+          "exit_date": "2026-02-04 00:00:00+05:30",
+          "gross_pnl": -153.8,
+          "cost": 0.65,
+          "net_pnl": -154.45,
+          "reason": "Volume spike (3.9x) + bearish bar"
+        },
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1386.0,
+          "exit_price": 1391.2,
+          "entry_date": "2026-02-12 00:00:00+05:30",
+          "exit_date": "2026-02-17 00:00:00+05:30",
+          "gross_pnl": -5.2,
+          "cost": 0.56,
+          "net_pnl": -5.76,
+          "reason": "Volume spike (2.1x) + bullish bar"
+        },
+        {
+          "symbol": "INFY",
+          "side": "long",
+          "entry_price": 1255.9,
+          "exit_price": 1255.9,
+          "entry_date": "2026-03-20 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 0.0,
+          "cost": 0.5,
+          "net_pnl": -0.5,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "INFY",
+      "strategy": "vwap_reversion",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 246.35,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "INFY",
+          "side": "short",
+          "entry_price": 1502.8,
+          "exit_price": 1255.9,
+          "entry_date": "2025-11-14 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 246.9,
+          "cost": 0.55,
+          "net_pnl": 246.35,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "gamma_scalp",
+      "bars": 100,
+      "trades": 5,
+      "winners": 3,
+      "losers": 2,
+      "win_pct": 60.0,
+      "total_pnl": -62.42,
+      "sharpe": -5.189,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1320.4,
+          "exit_price": 1348.0,
+          "entry_date": "2025-11-06 00:00:00+05:30",
+          "exit_date": "2025-11-10 00:00:00+05:30",
+          "gross_pnl": 27.6,
+          "cost": 0.53,
+          "net_pnl": 27.07,
+          "reason": "RSI=52 reverted to neutral - exit long"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1385.9,
+          "exit_price": 1383.0,
+          "entry_date": "2025-11-13 00:00:00+05:30",
+          "exit_date": "2025-11-20 00:00:00+05:30",
+          "gross_pnl": 2.9,
+          "cost": 0.55,
+          "net_pnl": 2.35,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1371.5,
+          "exit_price": 1413.1,
+          "entry_date": "2026-01-05 00:00:00+05:30",
+          "exit_date": "2026-01-12 00:00:00+05:30",
+          "gross_pnl": -41.6,
+          "cost": 0.56,
+          "net_pnl": -42.16,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1361.4,
+          "exit_price": 1383.6,
+          "entry_date": "2026-01-27 00:00:00+05:30",
+          "exit_date": "2026-01-29 00:00:00+05:30",
+          "gross_pnl": 22.2,
+          "cost": 0.55,
+          "net_pnl": 21.65,
+          "reason": "RSI=88 reverted to neutral - exit long"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1365.4,
+          "exit_price": 1294.6,
+          "entry_date": "2026-03-04 00:00:00+05:30",
+          "exit_date": "2026-03-11 00:00:00+05:30",
+          "gross_pnl": -70.8,
+          "cost": 0.53,
+          "net_pnl": -71.33,
+          "reason": "gamma scalp max hold exit"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "mean_reversion",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": 17.44,
+      "sharpe": 2.6352,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1342.5,
+          "exit_price": 1404.3,
+          "entry_date": "2025-12-30 00:00:00+05:30",
+          "exit_date": "2026-01-09 00:00:00+05:30",
+          "gross_pnl": 61.8,
+          "cost": 0.55,
+          "net_pnl": 61.25,
+          "reason": "RSI crossed below overbought (64.5)"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1288.7,
+          "exit_price": 1245.4,
+          "entry_date": "2026-03-17 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -43.3,
+          "cost": 0.51,
+          "net_pnl": -43.81,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "momentum_breakout",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": 53.82,
+      "sharpe": 5.8784,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1366.0,
+          "exit_price": 1411.2,
+          "entry_date": "2025-12-12 00:00:00+05:30",
+          "exit_date": "2026-01-06 00:00:00+05:30",
+          "gross_pnl": -45.2,
+          "cost": 0.56,
+          "net_pnl": -45.76,
+          "reason": "EMA bullish crossover + volume"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1345.5,
+          "exit_price": 1245.4,
+          "entry_date": "2026-01-22 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 100.1,
+          "cost": 0.52,
+          "net_pnl": 99.58,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "option_fade",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": -66.18,
+      "sharpe": -6.5966,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1427.7,
+          "exit_price": 1380.6,
+          "entry_date": "2026-01-07 00:00:00+05:30",
+          "exit_date": "2026-01-19 00:00:00+05:30",
+          "gross_pnl": 47.1,
+          "cost": 0.56,
+          "net_pnl": 46.54,
+          "reason": "price reverted to BB mid - exit PE"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1357.6,
+          "exit_price": 1245.4,
+          "entry_date": "2026-03-05 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -112.2,
+          "cost": 0.52,
+          "net_pnl": -112.72,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "option_momentum",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -66.25,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1411.2,
+          "exit_price": 1345.5,
+          "entry_date": "2026-01-06 00:00:00+05:30",
+          "exit_date": "2026-01-22 00:00:00+05:30",
+          "gross_pnl": -65.7,
+          "cost": 0.55,
+          "net_pnl": -66.25,
+          "reason": "EMA bearish crossover - exit CE"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "orb_strategy",
+      "bars": 100,
+      "trades": 8,
+      "winners": 1,
+      "losers": 7,
+      "win_pct": 12.5,
+      "total_pnl": -342.15,
+      "sharpe": -18.9,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1345.3,
+          "exit_price": 1385.9,
+          "entry_date": "2025-10-31 00:00:00+05:30",
+          "exit_date": "2025-11-13 00:00:00+05:30",
+          "gross_pnl": -40.6,
+          "cost": 0.55,
+          "net_pnl": -41.15,
+          "reason": "ORB breakout above 1375.80"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1379.0,
+          "exit_price": 1352.4,
+          "entry_date": "2025-11-17 00:00:00+05:30",
+          "exit_date": "2025-12-17 00:00:00+05:30",
+          "gross_pnl": -26.6,
+          "cost": 0.55,
+          "net_pnl": -27.15,
+          "reason": "ORB breakdown below 1356.20"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1354.1,
+          "exit_price": 1411.2,
+          "entry_date": "2025-12-19 00:00:00+05:30",
+          "exit_date": "2026-01-06 00:00:00+05:30",
+          "gross_pnl": -57.1,
+          "cost": 0.55,
+          "net_pnl": -57.65,
+          "reason": "ORB breakout above 1375.80"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1427.7,
+          "exit_price": 1349.0,
+          "entry_date": "2026-01-07 00:00:00+05:30",
+          "exit_date": "2026-01-21 00:00:00+05:30",
+          "gross_pnl": -78.7,
+          "cost": 0.56,
+          "net_pnl": -79.26,
+          "reason": "ORB breakdown below 1356.20"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1345.5,
+          "exit_price": 1383.6,
+          "entry_date": "2026-01-22 00:00:00+05:30",
+          "exit_date": "2026-01-29 00:00:00+05:30",
+          "gross_pnl": -38.1,
+          "cost": 0.55,
+          "net_pnl": -38.65,
+          "reason": "ORB breakout above 1375.80"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1355.0,
+          "exit_price": 1389.7,
+          "entry_date": "2026-01-30 00:00:00+05:30",
+          "exit_date": "2026-02-03 00:00:00+05:30",
+          "gross_pnl": -34.7,
+          "cost": 0.55,
+          "net_pnl": -35.25,
+          "reason": "ORB breakout above 1375.80"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1408.4,
+          "exit_price": 1313.4,
+          "entry_date": "2026-02-04 00:00:00+05:30",
+          "exit_date": "2026-03-06 00:00:00+05:30",
+          "gross_pnl": -95.0,
+          "cost": 0.54,
+          "net_pnl": -95.54,
+          "reason": "ORB breakdown below 1356.20"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1278.4,
+          "exit_price": 1245.4,
+          "entry_date": "2026-03-09 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 33.0,
+          "cost": 0.5,
+          "net_pnl": 32.5,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "straddle_breakout",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 56.55,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1354.1,
+          "exit_price": 1411.2,
+          "entry_date": "2025-12-19 00:00:00+05:30",
+          "exit_date": "2026-01-06 00:00:00+05:30",
+          "gross_pnl": 57.1,
+          "cost": 0.55,
+          "net_pnl": 56.55,
+          "reason": "straddle profit: underlying moved +4.2%"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "volume_spike",
+      "bars": 100,
+      "trades": 2,
+      "winners": 1,
+      "losers": 1,
+      "win_pct": 50.0,
+      "total_pnl": 65.42,
+      "sharpe": 5.0927,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1342.5,
+          "exit_price": 1411.2,
+          "entry_date": "2025-12-30 00:00:00+05:30",
+          "exit_date": "2026-01-06 00:00:00+05:30",
+          "gross_pnl": -68.7,
+          "cost": 0.55,
+          "net_pnl": -69.25,
+          "reason": "Volume spike (2.1x) + bullish bar"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1380.6,
+          "exit_price": 1245.4,
+          "entry_date": "2026-01-19 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 135.2,
+          "cost": 0.53,
+          "net_pnl": 134.67,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "strategy": "vwap_reversion",
+      "bars": 100,
+      "trades": 4,
+      "winners": 4,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 249.83,
+      "sharpe": 19.3905,
+      "trade_list": [
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1343.0,
+          "exit_price": 1373.0,
+          "entry_date": "2025-11-07 00:00:00+05:30",
+          "exit_date": "2025-11-14 00:00:00+05:30",
+          "gross_pnl": 30.0,
+          "cost": 0.54,
+          "net_pnl": 29.46,
+          "reason": "VWAP reversion from above (dev: 0.0138)"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1388.8,
+          "exit_price": 1361.4,
+          "entry_date": "2025-11-28 00:00:00+05:30",
+          "exit_date": "2026-01-27 00:00:00+05:30",
+          "gross_pnl": 27.4,
+          "cost": 0.55,
+          "net_pnl": 26.85,
+          "reason": "VWAP reversion from below (dev: -0.0070)"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "long",
+          "entry_price": 1352.8,
+          "exit_price": 1396.5,
+          "entry_date": "2026-02-02 00:00:00+05:30",
+          "exit_date": "2026-02-05 00:00:00+05:30",
+          "gross_pnl": 43.7,
+          "cost": 0.55,
+          "net_pnl": 43.15,
+          "reason": "VWAP reversion from above (dev: 0.0180)"
+        },
+        {
+          "symbol": "ICICIBANK",
+          "side": "short",
+          "entry_price": 1396.3,
+          "exit_price": 1245.4,
+          "entry_date": "2026-02-09 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 150.9,
+          "cost": 0.53,
+          "net_pnl": 150.37,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "gamma_scalp",
+      "bars": 100,
+      "trades": 5,
+      "winners": 2,
+      "losers": 3,
+      "win_pct": 40.0,
+      "total_pnl": -70.0,
+      "sharpe": -7.5034,
+      "trade_list": [
+        {
+          "symbol": "SBIN",
+          "side": "long",
+          "entry_price": 951.05,
+          "exit_price": 959.75,
+          "entry_date": "2025-12-03 00:00:00+05:30",
+          "exit_date": "2025-12-10 00:00:00+05:30",
+          "gross_pnl": 8.7,
+          "cost": 0.38,
+          "net_pnl": 8.32,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "SBIN",
+          "side": "short",
+          "entry_price": 998.95,
+          "exit_price": 1000.5,
+          "entry_date": "2026-01-02 00:00:00+05:30",
+          "exit_date": "2026-01-09 00:00:00+05:30",
+          "gross_pnl": -1.55,
+          "cost": 0.4,
+          "net_pnl": -1.95,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "SBIN",
+          "side": "short",
+          "entry_price": 1048.35,
+          "exit_price": 1029.5,
+          "entry_date": "2026-01-22 00:00:00+05:30",
+          "exit_date": "2026-01-23 00:00:00+05:30",
+          "gross_pnl": 18.85,
+          "cost": 0.42,
+          "net_pnl": 18.43,
+          "reason": "RSI=38 reverted to neutral - exit short"
+        },
+        {
+          "symbol": "SBIN",
+          "side": "short",
+          "entry_price": 1146.0,
+          "exit_price": 1208.1,
+          "entry_date": "2026-02-09 00:00:00+05:30",
+          "exit_date": "2026-02-16 00:00:00+05:30",
+          "gross_pnl": -62.1,
+          "cost": 0.47,
+          "net_pnl": -62.57,
+          "reason": "gamma scalp max hold exit"
+        },
+        {
+          "symbol": "SBIN",
+          "side": "long",
+          "entry_price": 1098.5,
+          "exit_price": 1066.7,
+          "entry_date": "2026-03-09 00:00:00+05:30",
+          "exit_date": "2026-03-16 00:00:00+05:30",
+          "gross_pnl": -31.8,
+          "cost": 0.43,
+          "net_pnl": -32.23,
+          "reason": "gamma scalp max hold exit"
+        }
+      ]
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "mean_reversion",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -87.81,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "SBIN",
+          "side": "short",
+          "entry_price": 970.6,
+          "exit_price": 1058.0,
+          "entry_date": "2025-11-24 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -87.4,
+          "cost": 0.41,
+          "net_pnl": -87.81,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "momentum_breakout",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -98.65,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "SBIN",
+          "side": "short",
+          "entry_price": 959.75,
+          "exit_price": 1058.0,
+          "entry_date": "2025-12-10 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -98.25,
+          "cost": 0.4,
+          "net_pnl": -98.65,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "option_fade",
+      "bars": 100,
+      "trades": 3,
+      "winners": 1,
+      "losers": 2,
+      "win_pct": 33.3,
+      "total_pnl": -52.65,
+      "sharpe": -13.9283,
+      "trade_list": [
+        {
+          "symbol": "SBIN",
+          "side": "short",
+          "entry_price": 998.95,
+          "exit_price": 1018.2,
+          "entry_date": "2026-01-02 00:00:00+05:30",
+          "exit_date": "2026-02-01 00:00:00+05:30",
+          "gross_pnl": -19.25,
+          "cost": 0.4,
+          "net_pnl": -19.65,
+          "reason": "price reverted to BB mid - exit PE"
+        },
+        {
+          "symbol": "SBIN",
+          "side": "short",
+          "entry_price": 1182.9,
+          "exit_price": 1174.5,
+          "entry_date": "2026-02-11 00:00:00+05:30",
+          "exit_date": "2026-03-04 00:00:00+05:30",
+          "gross_pnl": 8.4,
+          "cost": 0.47,
+          "net_pnl": 7.93,
+          "reason": "price reverted to BB mid - exit PE"
+        },
+        {
+          "symbol": "SBIN",
+          "side": "long",
+          "entry_price": 1098.5,
+          "exit_price": 1058.0,
+          "entry_date": "2026-03-09 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -40.5,
+          "cost": 0.43,
+          "net_pnl": -40.93,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "option_momentum",
+      "bars": 100,
+      "trades": 0,
+      "winners": 0,
+      "losers": 0,
+      "win_pct": 0.0,
+      "total_pnl": 0,
+      "sharpe": 0.0,
+      "trade_list": []
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "orb_strategy",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 107.9,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "SBIN",
+          "side": "long",
+          "entry_price": 949.7,
+          "exit_price": 1058.0,
+          "entry_date": "2025-11-03 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": 108.3,
+          "cost": 0.4,
+          "net_pnl": 107.9,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "straddle_breakout",
+      "bars": 100,
+      "trades": 1,
+      "winners": 1,
+      "losers": 0,
+      "win_pct": 100.0,
+      "total_pnl": 31.7,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "SBIN",
+          "side": "long",
+          "entry_price": 973.45,
+          "exit_price": 1005.55,
+          "entry_date": "2025-12-30 00:00:00+05:30",
+          "exit_date": "2026-01-05 00:00:00+05:30",
+          "gross_pnl": 32.1,
+          "cost": 0.4,
+          "net_pnl": 31.7,
+          "reason": "straddle profit: underlying moved +3.3%"
+        }
+      ]
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "volume_spike",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -88.44,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "SBIN",
+          "side": "long",
+          "entry_price": 1146.0,
+          "exit_price": 1058.0,
+          "entry_date": "2026-02-09 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -88.0,
+          "cost": 0.44,
+          "net_pnl": -88.44,
+          "reason": "session_end_flatten"
+        }
+      ]
+    },
+    {
+      "symbol": "SBIN",
+      "strategy": "vwap_reversion",
+      "bars": 100,
+      "trades": 1,
+      "winners": 0,
+      "losers": 1,
+      "win_pct": 0.0,
+      "total_pnl": -87.81,
+      "sharpe": 0.0,
+      "trade_list": [
+        {
+          "symbol": "SBIN",
+          "side": "short",
+          "entry_price": 970.6,
+          "exit_price": 1058.0,
+          "entry_date": "2025-11-24 00:00:00+05:30",
+          "exit_date": "2026-03-20 00:00:00+05:30",
+          "gross_pnl": -87.4,
+          "cost": 0.41,
+          "net_pnl": -87.81,
+          "reason": "session_end_flatten"
+        }
+      ]
+    }
+  ]
+}

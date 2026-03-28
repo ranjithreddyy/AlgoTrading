@@ -1,0 +1,352 @@
+{
+  "date": "2026-03-22",
+  "symbol": "RELIANCE",
+  "interval": "day",
+  "train_window": 200,
+  "test_window": 60,
+  "step": 60,
+  "n_folds": 4,
+  "strategies": [
+    "gamma_scalp",
+    "mean_reversion",
+    "momentum_breakout",
+    "option_fade",
+    "option_momentum",
+    "orb_strategy",
+    "straddle_breakout",
+    "volume_spike",
+    "vwap_reversion"
+  ],
+  "stability_leaderboard": [
+    {
+      "strategy": "orb_strategy",
+      "folds_won": 3,
+      "folds_profitable": 3,
+      "total_pnl": 288.71,
+      "avg_sharpe": -35.2523,
+      "total_trades": 7
+    },
+    {
+      "strategy": "option_fade",
+      "folds_won": 1,
+      "folds_profitable": 2,
+      "total_pnl": 140.23,
+      "avg_sharpe": 82.5626,
+      "total_trades": 4
+    },
+    {
+      "strategy": "volume_spike",
+      "folds_won": 0,
+      "folds_profitable": 2,
+      "total_pnl": 85.07,
+      "avg_sharpe": 0.0,
+      "total_trades": 2
+    },
+    {
+      "strategy": "momentum_breakout",
+      "folds_won": 0,
+      "folds_profitable": 2,
+      "total_pnl": 39.17,
+      "avg_sharpe": 0.0,
+      "total_trades": 2
+    },
+    {
+      "strategy": "vwap_reversion",
+      "folds_won": 0,
+      "folds_profitable": 1,
+      "total_pnl": 13.73,
+      "avg_sharpe": 34.3681,
+      "total_trades": 3
+    },
+    {
+      "strategy": "straddle_breakout",
+      "folds_won": 0,
+      "folds_profitable": 1,
+      "total_pnl": -4.5,
+      "avg_sharpe": 0.0,
+      "total_trades": 3
+    },
+    {
+      "strategy": "mean_reversion",
+      "folds_won": 0,
+      "folds_profitable": 1,
+      "total_pnl": -109.76,
+      "avg_sharpe": 0.0,
+      "total_trades": 4
+    },
+    {
+      "strategy": "gamma_scalp",
+      "folds_won": 0,
+      "folds_profitable": 1,
+      "total_pnl": -125.76,
+      "avg_sharpe": -3.9065,
+      "total_trades": 13
+    },
+    {
+      "strategy": "option_momentum",
+      "folds_won": 0,
+      "folds_profitable": 0,
+      "total_pnl": -61.11,
+      "avg_sharpe": -46.4826,
+      "total_trades": 2
+    }
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "train_start": "2024-03-22",
+      "train_end": "2025-01-13",
+      "test_start": "2025-01-14",
+      "test_end": "2025-04-09",
+      "winner": "option_fade",
+      "test_results": {
+        "gamma_scalp": {
+          "strategy": "gamma_scalp",
+          "trades": 5,
+          "pnl": 87.88,
+          "sharpe": 11.4517
+        },
+        "mean_reversion": {
+          "strategy": "mean_reversion",
+          "trades": 1,
+          "pnl": 102.11,
+          "sharpe": 0.0
+        },
+        "momentum_breakout": {
+          "strategy": "momentum_breakout",
+          "trades": 1,
+          "pnl": 30.72,
+          "sharpe": 0.0
+        },
+        "option_fade": {
+          "strategy": "option_fade",
+          "trades": 2,
+          "pnl": 130.96,
+          "sharpe": 82.5626
+        },
+        "option_momentum": {
+          "strategy": "option_momentum",
+          "trades": 2,
+          "pnl": -61.11,
+          "sharpe": -46.4826
+        },
+        "orb_strategy": {
+          "strategy": "orb_strategy",
+          "trades": 4,
+          "pnl": -265.07,
+          "sharpe": -35.2523
+        },
+        "straddle_breakout": {
+          "strategy": "straddle_breakout",
+          "trades": 1,
+          "pnl": -15.23,
+          "sharpe": 0.0
+        },
+        "volume_spike": {
+          "strategy": "volume_spike",
+          "trades": 1,
+          "pnl": 14.27,
+          "sharpe": 0.0
+        },
+        "vwap_reversion": {
+          "strategy": "vwap_reversion",
+          "trades": 2,
+          "pnl": 70.99,
+          "sharpe": 34.3681
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "train_start": "2024-06-24",
+      "train_end": "2025-04-09",
+      "test_start": "2025-04-11",
+      "test_end": "2025-07-08",
+      "winner": "orb_strategy",
+      "test_results": {
+        "gamma_scalp": {
+          "strategy": "gamma_scalp",
+          "trades": 3,
+          "pnl": -137.02,
+          "sharpe": -10.1008
+        },
+        "mean_reversion": {
+          "strategy": "mean_reversion",
+          "trades": 1,
+          "pnl": -97.4,
+          "sharpe": 0.0
+        },
+        "momentum_breakout": {
+          "strategy": "momentum_breakout",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "option_fade": {
+          "strategy": "option_fade",
+          "trades": 1,
+          "pnl": -9.81,
+          "sharpe": 0.0
+        },
+        "option_momentum": {
+          "strategy": "option_momentum",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "orb_strategy": {
+          "strategy": "orb_strategy",
+          "trades": 1,
+          "pnl": 262.54,
+          "sharpe": 0.0
+        },
+        "straddle_breakout": {
+          "strategy": "straddle_breakout",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "volume_spike": {
+          "strategy": "volume_spike",
+          "trades": 1,
+          "pnl": 70.8,
+          "sharpe": 0.0
+        },
+        "vwap_reversion": {
+          "strategy": "vwap_reversion",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "train_start": "2024-09-18",
+      "train_end": "2025-07-08",
+      "test_start": "2025-07-09",
+      "test_end": "2025-10-03",
+      "winner": "orb_strategy",
+      "test_results": {
+        "gamma_scalp": {
+          "strategy": "gamma_scalp",
+          "trades": 2,
+          "pnl": -24.31,
+          "sharpe": -6.562
+        },
+        "mean_reversion": {
+          "strategy": "mean_reversion",
+          "trades": 1,
+          "pnl": -21.46,
+          "sharpe": 0.0
+        },
+        "momentum_breakout": {
+          "strategy": "momentum_breakout",
+          "trades": 1,
+          "pnl": 8.45,
+          "sharpe": 0.0
+        },
+        "option_fade": {
+          "strategy": "option_fade",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "option_momentum": {
+          "strategy": "option_momentum",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "orb_strategy": {
+          "strategy": "orb_strategy",
+          "trades": 1,
+          "pnl": 119.73,
+          "sharpe": 0.0
+        },
+        "straddle_breakout": {
+          "strategy": "straddle_breakout",
+          "trades": 1,
+          "pnl": -9.95,
+          "sharpe": 0.0
+        },
+        "volume_spike": {
+          "strategy": "volume_spike",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "vwap_reversion": {
+          "strategy": "vwap_reversion",
+          "trades": 1,
+          "pnl": -57.26,
+          "sharpe": 0.0
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "train_start": "2024-12-16",
+      "train_end": "2025-10-03",
+      "test_start": "2025-10-06",
+      "test_end": "2025-12-31",
+      "winner": "orb_strategy",
+      "test_results": {
+        "gamma_scalp": {
+          "strategy": "gamma_scalp",
+          "trades": 3,
+          "pnl": -52.31,
+          "sharpe": -10.4148
+        },
+        "mean_reversion": {
+          "strategy": "mean_reversion",
+          "trades": 1,
+          "pnl": -93.01,
+          "sharpe": 0.0
+        },
+        "momentum_breakout": {
+          "strategy": "momentum_breakout",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "option_fade": {
+          "strategy": "option_fade",
+          "trades": 1,
+          "pnl": 19.08,
+          "sharpe": 0.0
+        },
+        "option_momentum": {
+          "strategy": "option_momentum",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "orb_strategy": {
+          "strategy": "orb_strategy",
+          "trades": 1,
+          "pnl": 171.51,
+          "sharpe": 0.0
+        },
+        "straddle_breakout": {
+          "strategy": "straddle_breakout",
+          "trades": 1,
+          "pnl": 20.68,
+          "sharpe": 0.0
+        },
+        "volume_spike": {
+          "strategy": "volume_spike",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        },
+        "vwap_reversion": {
+          "strategy": "vwap_reversion",
+          "trades": 0,
+          "pnl": 0,
+          "sharpe": 0.0
+        }
+      }
+    }
+  ]
+}

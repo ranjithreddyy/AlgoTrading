@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 
 from kiteconnect import KiteConnect
+from dotenv import load_dotenv
 import urllib.parse
 import os
 import sys
 
+load_dotenv()
+
 # Your API credentials from environment variables
 API_KEY = os.getenv('KITE_API_KEY')
 API_SECRET = os.getenv('KITE_API_SECRET')
-REDIRECT_URI = "http://localhost:8000"
+REDIRECT_URI = os.getenv('REDIRECTURL', 'http://127.0.0.1:5000/')
 
 # Validate that environment variables are set
 if not API_KEY or not API_SECRET:
